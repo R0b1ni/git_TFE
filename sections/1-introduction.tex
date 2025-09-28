@@ -1,0 +1,33 @@
+\section{Introduction}
+The preliminary design phase is a crucial step in the development of a new product, as it lays the foundation for the subsequent detailed design and manufacturing processes. This phase involves defining the product's specifications, identifying potential design concepts, and evaluating their feasibility. We will have some constraints to respect, and some design parameters to choose.
+\subsection{Input Data}
+\begin{itemize}
+    \item The working fluid is a calorifically perfect diatomic gas with the following properties:
+    \begin{itemize}
+        \item The ratio of specific heats $\gamma = 1.35$,
+        \item The specific gas constant $R = 287.06 \, \mathrm{J \, kg^{-1} \, K^{-1}}$.
+    \end{itemize}
+    \item Turbine mass flow rate $\dot{m} = 140.0 \, \mathrm{kg/s}$.
+    \item Turbine stage (extracted) power at shaft $P = 50.0 \, \mathrm{MW}$.
+    \item $M_1 = 0.45$.
+    \item Turbine inlet total pressure $P_{01} = 70 \, \mathrm{bars}$ (absolute).
+    \item Turbine inlet total temperature $T_{01} = 1900 \, \mathrm{K}$.
+    \item Turbine inlet yaw angle $\alpha_1 = 0^\circ$ (fully axial).
+    \item The high-pressure shaft speed $N = 15,000 \, \mathrm{RPM}$.
+    \item The blading efficiencies of both stator and rotor rows are to remain fixed throughout the 1D design at the value of $\eta_{S,R} = 0.90$.
+\end{itemize}
+
+\textbf{Design Constraints:}
+\begin{itemize}
+    \item The maximum allowable disc rim speed $U_{\text{disc, max}} < 465 \, \mathrm{m/s}$ (the disc rim radius can be taken to be equal to the rotor blade hub radius).
+    \item The $AN^2$ value must be lower than $1.7 \times 10^7 \, \mathrm{m^2 \, r \, pm^2}$.
+\end{itemize}
+
+\textbf{Design Parameters:}
+\begin{itemize}
+    \item The pressure reaction degree $R_p \approx \frac{p_2 - p_3}{p_{01} - p_3}$.
+    \item The stage loading factor $\Psi = \frac{\Delta H}{U^2}$.
+    \item The stage flow factor $\Phi = \frac{V_{2x}}{U_m}$.
+    \item The axial velocity ratio $\chi = \frac{V_{3x}}{V_{2x}}$
+    \item The rotor blade aspect ratio $AR = \frac{h}{R}$.
+\end{itemize}
