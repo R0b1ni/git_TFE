@@ -1,10 +1,10 @@
 # Fdb version 3
-["biber main"] 1759076499 "main.bcf" "main.bbl" "main" 1759234228
-  "main.bcf" 1759234228 106637 a642c71d52588da9c713b7a042b39da5 "pdflatex"
+["biber main"] 1759076499 "main.bcf" "main.bbl" "main" 1759237407
+  "main.bcf" 1759237407 106637 a642c71d52588da9c713b7a042b39da5 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1759234226 "/home/robini/git_TFE/main.tex" "main.pdf" "main" 1759234228
+["pdflatex"] 1759237405 "/home/robini/git_TFE/main.tex" "main.pdf" "main" 1759237407
   "/etc/texmf/web2c/texmf.cnf" 1741532958 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/robini/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1741536979 1405640 c16ba41b48da70b80fa93e5c08fa300a ""
   "/home/robini/git_TFE/main.tex" 1759076499 848 dc205f73b07c1f061fb23e2a48236fa4 ""
@@ -283,18 +283,18 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1741547575 4379155 98693266ff65f58d9f98aff394de12d2 ""
-  "images/KaplanTurbine.png" 1759076293 53668 8c2795ca84da1cd2b88e1baf03eed630 ""
+  "images/KaplanTurbine.jpg" 1759237083 54085 5f9c0318e511051933f369f953fe948d ""
   "logo/epl_logo.png" 1746438757 64900 1697d4997db264e9a2919c0693b37730 ""
   "logo/ucl_logo.png" 1746438768 99741 8a78c4aac1b6551332120c6f4ba32c98 ""
-  "main.aux" 1759234228 1171 573d55a3052143a0402eb7e8f32532f4 "pdflatex"
-  "main.bbl" 1759076499 466 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.out" 1759234228 345 ac18e333c4f175a7383e954a2df2de72 "pdflatex"
-  "main.run.xml" 1759234228 2307 5cfb9f50dac4da981ec10e9bc293c122 "pdflatex"
+  "main.aux" 1759237407 1296 929bf8dc438a410e8536218a40dcc75f "pdflatex"
+  "main.bbl" 1759236934 466 ee04f40f768daeed26442158e95aba61 "biber main"
+  "main.out" 1759237407 498 b9adff39aaed238b6efe9ef6c71bf7fb "pdflatex"
+  "main.run.xml" 1759237407 2307 5cfb9f50dac4da981ec10e9bc293c122 "pdflatex"
   "main.tex" 1759076499 848 dc205f73b07c1f061fb23e2a48236fa4 ""
-  "main.toc" 1759234228 216 395269891eb1ec5f161fc221bc008644 "pdflatex"
-  "sections/0-page_garde.tex" 1759076349 1239 80cc8e94555da98cfe230d7d08918185 ""
+  "main.toc" 1759237407 300 a2ca1f3348658b1e6a0499114d7c7f40 "pdflatex"
+  "sections/0-page_garde.tex" 1759237405 1239 8c90e140e6381383735842123aa86fac ""
   "sections/1-introduction.tex" 1747141732 2080 1a2eb55f73c022075c451981e4fd614b ""
-  "sections/2-State_of_the_Art.tex" 1759234226 47 5b2a4a9218bd2d0a9094f2dfa0bba5e1 ""
+  "sections/2-State_of_the_Art.tex" 1759237287 121 76c7cbe6e4f5771f299c5ad7065e8431 ""
   (generated)
   "main.aux"
   "main.bcf"
