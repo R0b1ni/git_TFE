@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.9)  28 SEP 2025 18:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.9)  30 SEP 2025 14:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1206,7 +1206,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  99i,9n,117p,1214b,848s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_gcpa6j.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_jhwmea.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_cuw7wa.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_sygphi.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_otkq6i.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMRM.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (3 pages, 377946 bytes).
+Output written on main.pdf (3 pages, 378088 bytes).
 PDF statistics:
  102 PDF objects out of 1000 (max. 8388607)
  72 compressed objects within 1 object stream
