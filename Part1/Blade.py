@@ -45,7 +45,7 @@ def NACA4(m,p,t,c,x):
 
     
 c = 1.0  # Chord length
-m = 0.02  # Maximum camber (2% of chord)
+m = 0.04  # Maximum camber (2% of chord)
 p = 0.4   # Location of maximum camber (40% of chord)
 t = 0.12  # Maximum thickness (12% of chord)
 
@@ -63,7 +63,6 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
-#3D plot of the airfoil extruded in the spanwise direction
 from mpl_toolkits.mplot3d import Axes3D
 
 span = 2  # Spanwise length
