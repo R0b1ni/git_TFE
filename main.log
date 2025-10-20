@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.9)  30 SEP 2025 15:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.9)  30 SEP 2025 15:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1151,15 +1151,7 @@ LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
 File: images/KaplanTurbine.jpg Graphic file (type jpg)
 <use images/KaplanTurbine.jpg>
 Package pdftex.def Info: images/KaplanTurbine.jpg  used on input line 19.
-(pdftex.def)             Requested size: 602.25465pt x 602.25465pt.
-
-Overfull \hbox (175.4633pt too wide) in paragraph at lines 19--19
- [][] 
- []
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo/ucl_logo.png (PNG copy)> <./logo/epl_logo.png>]
+(pdftex.def)             Requested size: 401.49289pt x 401.49289pt.
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/it' will be
@@ -1180,14 +1172,16 @@ LaTeX Font Info:    Font shape `TS1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 10.5pt on input line 32.
 LaTeX Font Info:    Font shape `TS1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 7.9pt on input line 32.
- [2 <./images/KaplanTurbine.jpg>] [3] (./main.toc
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo/ucl_logo.png (PNG copy)> <./logo/epl_logo.png> <./images/KaplanTurbine.jpg>] [2] (./main.toc
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
 (Font)              scaled to size 10.95pt on input line 1.
 )
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [4]) (./sections/1-introduction.tex
+ [3]) (./sections/1-introduction.tex
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 22.
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
@@ -1204,18 +1198,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44042 strings out of 480247
- 964338 string characters out of 5896152
+ 44041 strings out of 480247
+ 964332 string characters out of 5896152
  1710617 words of memory out of 5000000
  61265 multiletter control sequences out of 15000+600000
  657492 words of font info for 122 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,9n,117p,1214b,848s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_gcpa6j.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_jhwmea.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_cuw7wa.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_sygphi.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_otkq6i.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMRM.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (5 pages, 380539 bytes).
+Output written on main.pdf (4 pages, 380320 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 83 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
+ 110 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
  60 words of extra memory for PDF output out of 10000 (max. 10000000)
 
