@@ -35,7 +35,7 @@ def NACA4(m, p, t, c, x):
     return xu, yu, xl, yl
 
 c = 1.0    # corde
-m = 0.04   # cambrure max (4%)
+m = 0.02   # cambrure max (4%)
 p = 0.4    # position de la cambrure max (40%)
 t = 0.12   # épaisseur max (12%)
 x = np.linspace(0, c, 200)
@@ -54,8 +54,8 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 # ======================================================
-span = 2.0      # envergure
-twist = 20    # torsion totale au saumon (degrés)
+span = 2      # envergure
+twist = 2.46    # torsion totale (degrés)
 twist_axis = 0.25 * c  # quart de corde comme axe de torsion
 
 z = np.linspace(0, span, 20)
