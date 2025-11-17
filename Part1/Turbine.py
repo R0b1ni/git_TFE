@@ -9,10 +9,10 @@ import matplotlib.cm as cm
 
 # Data
 P = 1000 # W
-c_x = 1.5 # m/s (axial speed)
+c_x = 2.0 # m/s (axial speed)
 rho_w = 1000 # kg/m3
-R_i = 0.02 # m (inner radius)
-R_o = 0.05 # m (outer radius)
+R_o = 0.155
+R_i = 0.4 * R_o # m (inner radius) (from fig 15 of 2022 Abeykoon)
 g = 9.81 # m/s2
 H = 1 # m (height)
 N_q = 250

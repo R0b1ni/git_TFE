@@ -34,8 +34,8 @@ def NACA4(m, p, t, c, x):
 
     return xu, yu, xl, yl
 
-c = 1.0    # corde
-m = 0.02   # cambrure max (4%)
+c = (0.155 - 0.062) * 1.1    # corde
+m = 0.04   # cambrure max (4%)
 p = 0.4    # position de la cambrure max (40%)
 t = 0.12   # épaisseur max (12%)
 x = np.linspace(0, c, 200)
@@ -49,13 +49,13 @@ plt.title(f'NACA {int(m*100):01d}{int(p*10):01d}{int(t*100):02d}')
 plt.xlabel('x (Corde)')
 plt.ylabel('y')
 plt.axis('equal')
-plt.grid(True)
+plt.grid(False)
 plt.legend()
 plt.tight_layout()
 plt.show()
 # ======================================================
-span = 2      # envergure
-twist = 2.46    # torsion totale (degrés)
+span = (0.155 - 0.062) * 1.1      # envergure
+twist = -3.2    # torsion totale (degrés)
 twist_axis = 0.25 * c  # quart de corde comme axe de torsion
 
 z = np.linspace(0, span, 20)
@@ -63,7 +63,7 @@ x_3D, y_3D,z_3D  = [], [], []
 
 for zi in z:
     # Angle de torsion local
-    twist_angle = np.radians(twist * (zi / span))
+    twist_angle = np.radians(twist * (zi / span)) - np.radians(73.73)  # on soustrait l'angle de sortie du fluide
 
     # On translate pour mettre l'axe de torsion à x=0 avant rotation
     xu_shifted = xu - twist_axis
@@ -94,11 +94,30 @@ Z = np.array(z_3D)
 # Visualisation 3D
 fig = plt.figure(figsize=(10, 6))
 ax = fig.add_subplot(111, projection='3d')
-ax.plot_surface(X, Y, Z, rstride=1, cstride=1, color='royalblue', alpha=0.85, edgecolor='none')
+ax.plot_surface(Z, Y, -X, rstride=1, cstride=1, color='royalblue', alpha=0.85, edgecolor='none')
+
+
+
+# Paramètres du rotor (cylindre intérieur)
+height = (0.155 - 0.062 )  # hauteur approximative
+theta = np.linspace(0, 2*np.pi, 60)
+z_cyl = np.linspace(-height, height, 40)
+theta, z_cyl = np.meshgrid(theta, z_cyl)
+
+# Coordonnées du cylindre
+x_cyl = 0.062 * np.cos(theta) - 0.032
+y_cyl = 0.062 * np.sin(theta) - 0.025
+z_cyl = z_cyl + 0.031
+# Tracé du cylindre
+ax.plot_surface(x_cyl, y_cyl, -z_cyl, color = 'black', alpha=0.7, linewidth=0, shade=True)
+
 ax.set_title('Torsion géométrique : corde réelle constante, projection variable')
 ax.set_xlabel('X (Corde)')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z (Envergure)')
-ax.set_box_aspect((np.ptp(X), np.ptp(Y), np.ptp(Z)))
+#ax.set_box_aspect((np.ptp(X), np.ptp(Y), np.ptp(Z)))
+ax.set_xlim(-0.15, 0.15)
+ax.set_ylim(-0.15, 0.15)
+ax.set_zlim(-0.15, 0.15)
 plt.tight_layout()
 plt.show()

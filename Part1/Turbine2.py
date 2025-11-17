@@ -20,6 +20,7 @@ sigma = 2.0 # blockage ratio (from fig 15 of 2022 Abeykoon)
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
 N = sigma * (2 * g * H)**(3/4) / (2*np.sqrt(np.pi * Q))
+N = 0.7 * N
 n = N * 60 # rpm
 
 
@@ -117,16 +118,32 @@ for i in range (len(Radii)):
     
 df = pd.DataFrame({
     "Diameter": Radii * 2,
-    "x1_m": x_1,
-    "y1_m": y_1,
-    "z1_m": z_1,
-    "x2_m": x_2,
-    "y2_m": y_2,
-    "z2_m": z_2,
-    "xinf_m": x_inf,
-    "yinf_m": y_inf,
-    "zinf_m": z_inf
+    "x1": x_1,
+    "y1": y_1,
+    "z1": z_1,
+    "x2": x_2,
+    "y2": y_2,
+    "z2": z_2,
+    "xinf": x_inf,
+    "yinf": y_inf,
+    "zinf": z_inf
 })
+
+filename = 'Part1/Points.txt'
+
+with open(filename, 'w') as f:
+    # Points 1
+    for i in range(len(x_1)):
+        f.write(f"{x_1[i]:.6f} {y_1[i]:.6f} {z_1[i]:.6f}\n")
+    
+    # Points 2
+    for i in range(len(x_2)):
+        f.write(f"{x_2[i]:.6f} {y_2[i]:.6f} {z_2[i]:.6f}\n")
+    
+    # Points inf
+    for i in range(len(x_inf)):
+        f.write(f"{x_inf[i]:.6f} {y_inf[i]:.6f} {z_inf[i]:.6f}\n")
+
 pd.options.display.float_format = "{:,.3f}".format
 print(df.to_string(index=False))
 print("\n")
@@ -144,7 +161,7 @@ plt.title("Blade shape Turbine 2 - Top view")
 plt.xlabel("x (m)")
 plt.ylabel("y (m)")
 plt.axis('equal')
-plt.grid(True)
+plt.grid(False)
 plt.show()
 
 fig = plt.figure(figsize=(10,6))
