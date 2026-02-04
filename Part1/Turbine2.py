@@ -9,24 +9,40 @@ from scipy.interpolate import make_interp_spline
 from scipy.interpolate import PchipInterpolator
 
 # Data
-P = 1000 # W
-c_x = 2 # m/s (axial speed)
+c_x_pipe = 2 # m/s (axial speed before the turbine)
+
 rho_w = 1000 # kg/m3
-R_o = 0.155 # m (outer radius)
 g = 9.81 # m/s2
-H = 1 # m (height)
+R_o = 0.1 # maximum diameter =  D20 = input diameter old value = 0.155
 R_i = 0.4 * R_o # m (inner radius) (from fig 15 of 2022 Abeykoon)
-sigma = 2.0 # blockage ratio (from fig 15 of 2022 Abeykoon)
+
+#the fluid comes frome a pipe of R_o at speed c_x_pipe => by mass conservation
+c_x = c_x_pipe #* (R_o**2)/(R_o**2 - R_i**2) # en fonction de l'élargissement
+print(f"Axial speed c_x: {c_x :.2f} m/s\n")
+
+sigma = 1.6 # blockage ratio (from fig 15 of 2022 Abeykoon)
+eta_r = 0.93 #theorical maximal value for a Kaplan turbine
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
+H = 1
+P = rho_w * g * Q * H * eta_r
+print(f"height of the water column: {H :.4f} m \n")
+print (f"Power P: {P :.2f} W \n")
+
+print(f"Volumetric Flow rate Q: {Q * 3600 :.4f} m3/h \n")
 N = sigma * (2 * g * H)**(3/4) / (2*np.sqrt(np.pi * Q))
-N = 0.7 * N
+#N = 0.7 * N #(correction factor)
 n = N * 60 # rpm
 
+N_s = N * np.sqrt(Q) / (H**(3/4))
+
+print(f"Hydraulic efficiency eta: {eta_r :.2f} \n")
+print("Hydraulic Power P_hydraulic: {:.2f} W \n".format(rho_w * g * Q * H))
+print(f"Rotationnal speed N: {n :.2f} rpm <=> {N :.2f} t/s \n")
+print(f"Specific Rotationnal speed N_s: {N_s :.2f} \n")
 
 Re = (rho_w * c_x * (R_o)) / (1e-3) # dynamic viscosity of water ~ 1e-3 Pa.s
 
-print(f"Rotationnal speed N: {n :.2f} rpm <=> {N :.2f} t/s \n")
 
 #velocity triangles
 U_m = 2 * np.pi * N * (R_i + R_o) / 2 # mean blade speed
@@ -70,9 +86,7 @@ for i in range (len(Radii)):
     beta_2.append( np.degrees(np.arctan2(c_teta(r) + U, c_2x)) +90 )
     beta_inf.append(( beta_1[i] + beta_2[i] ) /2 )
     
-eta_r = P / (rho_w * g * Q * H)
-print(f"Hydraulic efficiency eta: {eta_r :.2f} \n")
-print("Hydraulic Power P_hydraulic: {:.2f} W \n".format(rho_w * g * Q * H))
+
 df = pd.DataFrame({
     "radius_m": Radii,
     "U_m_s": [2 * np.pi * N * r for r in Radii],
@@ -129,20 +143,32 @@ df = pd.DataFrame({
     "zinf": z_inf
 })
 
-filename = 'Part1/Points.txt'
+filename = 'Part1/Contour_1.txt'
 
 with open(filename, 'w') as f:
-    # Points 1
     for i in range(len(x_1)):
         f.write(f"{x_1[i]:.6f} {y_1[i]:.6f} {z_1[i]:.6f}\n")
     
-    # Points 2
-    for i in range(len(x_2)):
-        f.write(f"{x_2[i]:.6f} {y_2[i]:.6f} {z_2[i]:.6f}\n")
+filename = 'Part1/Contour_2.txt'
+
+with open(filename, 'w') as f:
+    f.write(f"{x_1[4]:.6f} {y_1[4]:.6f} {z_1[4]:.6f}\n")
+    f.write(f"{x_inf[4]:.6f} {y_inf[4]:.6f} {z_inf[4]:.6f}\n")
+    f.write(f"{x_2[4]:.6f} {y_2[4]:.6f} {z_2[4]:.6f}\n")
     
-    # Points inf
-    for i in range(len(x_inf)):
-        f.write(f"{x_inf[i]:.6f} {y_inf[i]:.6f} {z_inf[i]:.6f}\n")
+filename = 'Part1/Contour_3.txt'
+
+with open(filename, 'w') as f:
+    for i in range(len(x_2)):
+        f.write(f"{x_2[len(x_2) - i - 1]:.6f} {y_2[len(x_2) - i - 1]:.6f} {z_2[len(x_2) - i - 1]:.6f}\n")
+    
+    
+filename = 'Part1/Contour_4.txt'
+
+with open(filename, 'w') as f:
+    f.write(f"{x_2[0]:.6f} {y_2[0]:.6f} {z_2[0]:.6f}\n")
+    f.write(f"{x_inf[0]:.6f} {y_inf[0]:.6f} {z_inf[0]:.6f}\n")
+    f.write(f"{x_1[0]:.6f} {y_1[0]:.6f} {z_1[0]:.6f}\n")
 
 pd.options.display.float_format = "{:,.3f}".format
 print(df.to_string(index=False))
@@ -235,7 +261,19 @@ ax.set_title("Blade shape Turbine 3D view")
 ax.set_xlabel("X (m)")
 ax.set_ylabel("Y (m)")
 ax.set_zlabel("Z (m)")
-ax.set_xlim(-0.15, 0.15)
-ax.set_ylim(-0.15, 0.15)
-ax.set_zlim(-0.15, 0.15)
+ax.set_xlim(-0.1, 0.1)
+ax.set_ylim(-0.1, 0.1)
+ax.set_zlim(-0.1, 0.1)
 plt.show()
+
+
+#macros latex
+with open("Part1/results/values.tex", "w") as f:
+    f.write(f"\\newcommand{{\\Qvol}}{{{Q * 3600:.1f}}}\n")
+    f.write(f"\\newcommand{{\\DeltaH}}{{{H:.1f}}}\n")
+    f.write(f"\\newcommand{{\\Pext}}{{{P:.1f}}}\n")
+    f.write(f"\\newcommand{{\\etar}}{{{eta_r:.2f}}}\n")
+    f.write(f"\\newcommand{{\\N}}{{{n:.1f}}}\n")
+    f.write(f"\\newcommand{{\\Ns}}{{{N_s:.1f}}}\n")
+    f.write(f"\\newcommand{{\\Rey}}{{{Re:.1f}}}\n")
+    f.write(f"\\newcommand{{\\Um}}{{{U_m:.2f}}}\n")

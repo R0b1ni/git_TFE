@@ -1,13 +1,13 @@
 # Fdb version 3
-["biber main"] 1759076499 "main.bcf" "main.bbl" "main" 1759237538
-  "main.bcf" 1759237538 106637 a642c71d52588da9c713b7a042b39da5 "pdflatex"
+["biber main"] 1770226121 "main.bcf" "main.bbl" "main" 1770226570
+  "main.bcf" 1770226570 106637 a642c71d52588da9c713b7a042b39da5 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1759237537 "/home/robini/git_TFE/main.tex" "main.pdf" "main" 1759237538
+["pdflatex"] 1770226569 "/home/robini/git_TFE/main.tex" "main.pdf" "main" 1770226570
   "/etc/texmf/web2c/texmf.cnf" 1741532958 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/robini/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1741536979 1405640 c16ba41b48da70b80fa93e5c08fa300a ""
-  "/home/robini/git_TFE/main.tex" 1759076499 848 dc205f73b07c1f061fb23e2a48236fa4 ""
+  "/home/robini/git_TFE/main.tex" 1770222937 879 946d4394ea08f24a0e63d8b29ff86171 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_cuw7wa.enc" 1643752856 3223 f66ceb1176684f291f714528dd4fa59f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_gcpa6j.enc" 1643752856 3122 7edbd129c8a17c4e2564e9d3ed95cfde ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_jhwmea.enc" 1643752856 3026 5398d7659fea87e280ef69edbde173e5 ""
@@ -49,7 +49,6 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Roman.pfb" 1643752856 275884 17fde53d0bcaf7732d1a90aa67d48f9b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMI.pfb" 1574202649 35962 b8e5ad17481d8da8fda782ec93823c95 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMRM.pfb" 1574202649 16222 f78b189d4b3df5fcc178258a4ce41866 ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb" 1572128992 32409 1452fa0ce4fabfb48acd5d077e296f6d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb" 1635022465 56686 b959be5e2e4a0232f5aa4c1c4be4574a ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb" 1569879884 40320 53cb337366eff502cad8f44871c88e39 ""
   "/usr/share/texlive/texmf-dist/fonts/vf/public/cochineal/Cochineal-Bold-tlf-t1.vf" 1600203854 1724 12bc2ff9daf2daa8d2379e4e2f4426a0 ""
@@ -283,18 +282,19 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1741547575 4379155 98693266ff65f58d9f98aff394de12d2 ""
+  "Part1/results/values.tex" 1770224970 200 918b5111090902ff5c8b3e2d22ca325c ""
   "images/KaplanTurbine.jpg" 1759237083 54085 5f9c0318e511051933f369f953fe948d ""
   "logo/epl_logo.png" 1746438757 64900 1697d4997db264e9a2919c0693b37730 ""
   "logo/ucl_logo.png" 1746438768 99741 8a78c4aac1b6551332120c6f4ba32c98 ""
-  "main.aux" 1759237538 1296 ef69cdd4cdc0273f4e1a23a042068d68 "pdflatex"
-  "main.bbl" 1759236934 466 ee04f40f768daeed26442158e95aba61 "biber main"
-  "main.out" 1759237538 498 b9adff39aaed238b6efe9ef6c71bf7fb "pdflatex"
-  "main.run.xml" 1759237538 2307 5cfb9f50dac4da981ec10e9bc293c122 "pdflatex"
-  "main.tex" 1759076499 848 dc205f73b07c1f061fb23e2a48236fa4 ""
-  "main.toc" 1759237538 300 a2ca1f3348658b1e6a0499114d7c7f40 "pdflatex"
+  "main.aux" 1770226570 1167 c86f0bee7c7cf4060d03163fed0090c4 "pdflatex"
+  "main.bbl" 1770226122 466 ee04f40f768daeed26442158e95aba61 "biber main"
+  "main.out" 1770226570 319 a911881505b51d165a8bc8e00d9aa71d "pdflatex"
+  "main.run.xml" 1770226570 2307 5cfb9f50dac4da981ec10e9bc293c122 "pdflatex"
+  "main.tex" 1770222937 879 946d4394ea08f24a0e63d8b29ff86171 ""
+  "main.toc" 1770226570 212 53a10984dddf5d6653d6a0f642510474 "pdflatex"
   "sections/0-page_garde.tex" 1759237535 1239 e42747f30016e4a2b445ccb3cda7d363 ""
-  "sections/1-introduction.tex" 1747141732 2080 1a2eb55f73c022075c451981e4fd614b ""
-  "sections/2-State_of_the_Art.tex" 1759237287 121 76c7cbe6e4f5771f299c5ad7065e8431 ""
+  "sections/1-introduction.tex" 1770226465 814 7af04d66da32baf728b9dcd2ca44f961 ""
+  "sections/2-State_of_the_Art.tex" 1770226568 1498 85f0627c56281bd1a7fb35a66d7d4ca6 ""
   (generated)
   "main.aux"
   "main.bcf"
