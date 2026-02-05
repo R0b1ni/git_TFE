@@ -21,10 +21,10 @@ c_x = c_x_pipe #* (R_o**2)/(R_o**2 - R_i**2) # en fonction de l'élargissement
 print(f"Axial speed c_x: {c_x :.2f} m/s\n")
 
 sigma = 1.6 # blockage ratio (from fig 15 of 2022 Abeykoon)
-eta_r = 0.93 #theorical maximal value for a Kaplan turbine
+eta_r = 0.9 #theorical maximal value for a Kaplan turbine
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
-H = 1
+H = 1.5
 P = rho_w * g * Q * H * eta_r
 print(f"height of the water column: {H :.4f} m \n")
 print (f"Power P: {P :.2f} W \n")
