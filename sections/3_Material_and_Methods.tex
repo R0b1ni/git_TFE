@@ -1,0 +1,87 @@
+\section{Blade design}
+The design of turbine blades is a critical aspect that directly influences the performance and efficiency of the turbine. We will here use the method proposed by ...(Abeykoon) for the blade design of a Kaplan turbine.
+
+
+The first step is to estimate the extracted power of the turbine to start the design.
+Based on the input data, we can start by estimating the blockage factor with the following graph(from fig 15 of 2022 Abeykoon):
+\begin{itemize}
+    \item $\sigma = 1.6$
+\end{itemize}
+Considering: (from fig 15 of 2022 Abeykoon)
+\begin{equation}
+    R_i = 0.4 \times R_o = 0.04 \, \mathrm{m}
+\end{equation}
+
+We can calculate the volumetric flowrate $Q$:
+\begin{equation}
+    Q = \pi (R_o^2 - R_i^2) V_x
+      = \Qvol \, \mathrm{m^3/h}
+\end{equation}
+
+By taking the maximal theorical hydraulic efficiency for a Kaplan turbine,
+we can estimate the extracted power:
+\begin{equation}
+    P_{extracted} = \eta P_{hydraulic} = \eta \rho g Q \Delta H
+\end{equation}
+\begin{equation}
+    P_{extracted} = \Pext \, \mathrm{W}
+\end{equation}
+
+
+First, we can calculate the rotationnal speed based on the following correlation: (Abeykoon)
+\begin{equation}
+N = \sigma \frac{(2gH)^{3/4}}{2\sqrt{\pi Q}}
+\end{equation}
+Therefore, we have:
+\begin{equation}
+N = \N \, \mathrm{rpm}
+\end{equation}
+We can also obtain the mean speed of the blade:
+\begin{equation}
+U_m = 2\pi R_m \frac{N}{60}
+\end{equation}
+with
+\begin{equation}
+R_m = \frac{(R_o - R_i)}{2} = 0.07 \, \mathrm{m}
+\end{equation}
+
+\subsection{1D Meanline Design}
+With all these parameters, we can start the 1D meanline blade design. The first step is to set the angles, and different types of speed : \\
+To insert : velocity triangles, angles, etc...
+
+From the mass conservation theorem, we know that the axial velocity at the inlet of the turbine is equal to the axial velocity at the outlet of the turbine, therefore we can write:
+\begin{equation}
+c_{2x} = c_{1x} = c_{x,pipe} = 2 \, \mathrm{m/s}
+\end{equation}
+
+Here we can calculate $c_{2 \theta,m}$ velocity at the outlet of the turbine knowing that $c_{1 \theta,m} = 0$. To do this, we will use the Euler formula:
+\begin{equation}
+P = \omega T = \frac{U_m}{R_m} T 
+\end{equation}
+From the second law of motion, we can write for a constant radius:
+\begin{equation}
+T = \dot{m} R_m (c_{2 \theta,m} - c_{1 \theta,m}) 
+\end{equation}
+Finally, we can write:
+\begin{equation}
+P = \dot{m} U_m (c_{2 \theta,m} - c_{1 \theta,m}) 
+\end{equation}
+and we find $c_{2 \theta,m}$:
+\begin{equation}
+c_{2\theta,m} = \frac{P}{\dot{m} U_m}
+\end{equation}
+
+We can therefore plot the velocity triangles at the inlet and outlet of the turbine, for the mean radius : 
+To insert : velocity triangles scaled.
+
+\subsection{3-D design}
+Once we have the velocity triangles at $R_m$, we can choose a vortex distribution for the blade design.
+Here, we chose a free vortex distribution, which means that the tangential velocity at the inlet of the turbine will be inversely proportional to the radius and we obtain a constant work along the blade. We can therefore write:
+\begin{equation}
+c_{2 \theta} = \frac{K}{r}
+\end{equation}
+with $K$ a constant that we can calculate with the velocity triangle at the mean radius:
+\begin{equation}
+K = c_{2 \theta,m} R_m
+\end{equation}
+It's important to notice that with this choice of vortex distribution, we will obtain a twisted blade, which we 

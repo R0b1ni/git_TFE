@@ -24,7 +24,7 @@ sigma = 1.6 # blockage ratio (from fig 15 of 2022 Abeykoon)
 eta_r = 0.9 #theorical maximal value for a Kaplan turbine
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
-H = 1.5
+H = 1
 P = rho_w * g * Q * H * eta_r
 print(f"height of the water column: {H :.4f} m \n")
 print (f"Power P: {P :.2f} W \n")
@@ -143,27 +143,27 @@ df = pd.DataFrame({
     "zinf": z_inf
 })
 
-filename = 'Part1/Contour_1.txt'
+filename = 'Part1/results/Contour_1.txt'
 
 with open(filename, 'w') as f:
     for i in range(len(x_1)):
         f.write(f"{x_1[i]:.6f} {y_1[i]:.6f} {z_1[i]:.6f}\n")
     
-filename = 'Part1/Contour_2.txt'
+filename = 'Part1/results/Contour_2.txt'
 
 with open(filename, 'w') as f:
     f.write(f"{x_1[4]:.6f} {y_1[4]:.6f} {z_1[4]:.6f}\n")
     f.write(f"{x_inf[4]:.6f} {y_inf[4]:.6f} {z_inf[4]:.6f}\n")
     f.write(f"{x_2[4]:.6f} {y_2[4]:.6f} {z_2[4]:.6f}\n")
     
-filename = 'Part1/Contour_3.txt'
+filename = 'Part1/results/Contour_3.txt'
 
 with open(filename, 'w') as f:
     for i in range(len(x_2)):
         f.write(f"{x_2[len(x_2) - i - 1]:.6f} {y_2[len(x_2) - i - 1]:.6f} {z_2[len(x_2) - i - 1]:.6f}\n")
     
     
-filename = 'Part1/Contour_4.txt'
+filename = 'Part1/results/Contour_4.txt'
 
 with open(filename, 'w') as f:
     f.write(f"{x_2[0]:.6f} {y_2[0]:.6f} {z_2[0]:.6f}\n")

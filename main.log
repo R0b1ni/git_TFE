@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.9)  5 FEB 2026 15:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.9)  10 FEB 2026 12:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1101,7 +1101,7 @@ LaTeX Info: Redefining \nameref on input line 25.
 \openout5 = `main.out'.
 
  (./Part1/results/values.tex) (./sections/0-page_garde.tex
-<logo/ucl_logo.png, id=19, 2489.3pt x 575.14874pt>
+<logo/ucl_logo.png, id=31, 2489.3pt x 575.14874pt>
 File: logo/ucl_logo.png Graphic file (type png)
 <use logo/ucl_logo.png>
 Package pdftex.def Info: logo/ucl_logo.png  used on input line 10.
@@ -1138,7 +1138,7 @@ LaTeX Font Info:    Font shape `TS1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 11.
 LaTeX Font Info:    Font shape `TS1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 6.1pt on input line 11.
-<logo/epl_logo.png, id=20, 2569.6pt x 1565.85pt>
+<logo/epl_logo.png, id=32, 2569.6pt x 1565.85pt>
 File: logo/epl_logo.png Graphic file (type png)
 <use logo/epl_logo.png>
 Package pdftex.def Info: logo/epl_logo.png  used on input line 14.
@@ -1147,7 +1147,7 @@ LaTeX Font Info:    Font shape `T1/Cochineal-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 18.
 LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 18.
-<images/KaplanTurbine.jpg, id=22, 1003.75pt x 1003.75pt>
+<images/KaplanTurbine.jpg, id=34, 1003.75pt x 1003.75pt>
 File: images/KaplanTurbine.jpg Graphic file (type jpg)
 <use images/KaplanTurbine.jpg>
 Package pdftex.def Info: images/KaplanTurbine.jpg  used on input line 19.
@@ -1181,34 +1181,38 @@ LaTeX Font Info:    Font shape `T1/Cochineal-TLF/b/n' will be
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [3]) (./sections/1-introduction.tex) (./sections/2-State_of_the_Art.texpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+ [3]) (./sections/1-introduction.tex) (./sections/2-State_of_the_Art.tex) (./sections/3_Material_and_Methods.texpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.46 \end{equation}
+l.34 \end{equation}
                     [1])pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.35 \end{document}
-                    [2] (./main.aux)
+l.36 \end{document}
+                    [2]pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.36 \end{document}
+                    [3] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A911881505B51D165A8BC8E00D9AA71D;319.
+(rerunfilecheck)             Checksum: E3087AE2356EDD453E4F49AD99CEF737;714.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44051 strings out of 480247
- 964438 string characters out of 5896152
+ 44069 strings out of 480247
+ 964784 string characters out of 5896152
  1709617 words of memory out of 5000000
- 61271 multiletter control sequences out of 15000+600000
+ 61276 multiletter control sequences out of 15000+600000
  627515 words of font info for 113 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,9n,117p,1214b,848s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_gcpa6j.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_jhwmea.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_cuw7wa.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_sygphi.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cochineal/coch_otkq6i.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMRM.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (5 pages, 377297 bytes).
+Output written on main.pdf (6 pages, 384585 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 83 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 52 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 140 PDF objects out of 1000 (max. 8388607)
+ 109 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

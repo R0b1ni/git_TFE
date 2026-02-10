@@ -1460,6 +1460,10 @@ INPUT sections/2-State_of_the_Art.tex
 INPUT ./sections/2-State_of_the_Art.tex
 INPUT ./sections/2-State_of_the_Art.tex
 INPUT sections/2-State_of_the_Art.tex
+INPUT ./sections/3_Material_and_Methods.tex
+INPUT sections/3_Material_and_Methods.tex
+INPUT ./sections/3_Material_and_Methods.tex
+INPUT sections/3_Material_and_Methods.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/cochineal/Cochineal-Roman-ts1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cochineal/Cochineal-Roman-ts1--base.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/cochineal/zcochmia.vf
