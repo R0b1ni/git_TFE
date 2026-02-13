@@ -4,3 +4,4 @@
 \contentsline {section}{\numberline {3}Blade design}{1}{section.3}%
 \contentsline {subsection}{\numberline {3.1}1D Meanline Design}{2}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}3-D design}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Blade Geometry}{4}{subsection.3.3}%

@@ -7,6 +7,29 @@ from scipy.optimize import minimize
 import matplotlib.cm as cm
 from scipy.interpolate import make_interp_spline
 from scipy.interpolate import PchipInterpolator
+from matplotlib.patches import FancyArrowPatch
+
+def draw_arrow(ax, x0, y0, x1, y1, color, label=None,
+               lw=2.0, text_offset=(0, 0), mscale=12):
+    arrow = FancyArrowPatch(
+        (x0, y0), (x1, y1),
+        arrowstyle='->',
+        linewidth=lw,
+        color=color,
+        mutation_scale=mscale   # ⬅️ clé de la visibilité
+    )
+    ax.add_patch(arrow)
+
+    if label is not None:
+        ax.text(
+            (x0 + x1) / 2 + text_offset[0],
+            (y0 + y1) / 2 + text_offset[1],
+            label,
+            color=color,
+            fontsize=12,
+            ha='center',
+            va='center'
+        )
 
 # Data
 c_x_pipe = 2 # m/s (axial speed before the turbine)
@@ -85,7 +108,54 @@ for i in range (len(Radii)):
     beta_1.append( np.degrees(np.arctan2(U, c_1x)) +90)
     beta_2.append( np.degrees(np.arctan2(c_teta(r) + U, c_2x)) +90 )
     beta_inf.append(( beta_1[i] + beta_2[i] ) /2 )
-    
+    if r == (R_i + R_o) / 2:
+        V_2x = float(c_2x)
+        V_2y = 0.0
+        V_3x = float(c_2x)
+        V_3y = float(c_teta(r))
+
+        color1 = 'tab:blue'
+        color2 = 'tab:gray'
+        color3 = 'lightskyblue'
+
+        fig, ax = plt.subplots(figsize=(10,8))
+
+        # V2
+        draw_arrow(ax, 0, 0, -V_2y, -V_2x, color1, 'V2', lw=2.5, text_offset=(0, 0.15))
+
+        # U (entrée)
+        draw_arrow(ax, -V_2y, -V_2x, -V_2y + U_m, -V_2x,
+                color2, 'U', lw=2.0, text_offset=(0, 0.15))
+
+        # W2
+        draw_arrow(ax, 0, 0, -V_2y + U_m, -V_2x,
+                color3, 'W2', lw=2.5, text_offset=(0, -0.2))
+
+        # V3
+        draw_arrow(ax, 0, 0, V_3y, -V_3x, color1, 'V3', lw=2.5, text_offset=(0.15, 0))
+
+        # U (sortie)
+        draw_arrow(ax, V_3y, -V_3x, V_3y + U_m, -V_3x,
+                color2, 'U', lw=2.0, text_offset=(0, 0.15))
+
+        # W3
+        draw_arrow(ax, 0, 0, V_3y + U_m, -V_3x,
+                color3, 'W3', lw=2.5, text_offset=(0.2, 0))
+
+        ax.set_title('Velocity Triangles', fontsize=14)
+        ax.scatter([0], [0], color='black', zorder=5)
+
+        #ax.set_aspect('equal')
+
+        #ax.set_xlim(-0.25, 9)
+        # ax.set_ylim(-2.5, 0)
+
+        ax.grid(True, linestyle='--', alpha=0.4)
+        plt.tight_layout()
+        plt.savefig('Part1/results/velocity_triangles.pdf')
+        plt.show()
+
+
 
 df = pd.DataFrame({
     "radius_m": Radii,
@@ -188,6 +258,7 @@ plt.xlabel("x (m)")
 plt.ylabel("y (m)")
 plt.axis('equal')
 plt.grid(False)
+plt.savefig('Part1/results/Twist_view.pdf')
 plt.show()
 
 fig = plt.figure(figsize=(10,6))
@@ -264,6 +335,7 @@ ax.set_zlabel("Z (m)")
 ax.set_xlim(-0.1, 0.1)
 ax.set_ylim(-0.1, 0.1)
 ax.set_zlim(-0.1, 0.1)
+plt.savefig('Part1/results/3D_Model.pdf')
 plt.show()
 
 

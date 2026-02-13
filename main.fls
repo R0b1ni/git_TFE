@@ -1481,7 +1481,17 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
+INPUT ./Part1/results/velocity_triangles.pdf
+INPUT ./Part1/results/velocity_triangles.pdf
+INPUT Part1/results/velocity_triangles.pdf
+INPUT ./Part1/results/velocity_triangles.pdf
+INPUT ./Part1/results/velocity_triangles.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxexx.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txexs.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy5.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT main.aux
@@ -1499,5 +1509,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Itali
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/Cochineal-Roman.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMI.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/cochineal/cochMRM.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb
