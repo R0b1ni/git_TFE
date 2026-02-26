@@ -32,7 +32,7 @@ def draw_arrow(ax, x0, y0, x1, y1, color, label=None,
         )
 
 # Data
-c_x_pipe = 2 # m/s (axial speed before the turbine)
+c_x_pipe = 2.0 # m/s (axial speed before the turbine)
 
 rho_w = 1000 # kg/m3
 g = 9.81 # m/s2
@@ -44,18 +44,20 @@ c_x = c_x_pipe #* (R_o**2)/(R_o**2 - R_i**2) # en fonction de l'élargissement
 print(f"Axial speed c_x: {c_x :.2f} m/s\n")
 
 sigma = 1.6 # blockage ratio (from fig 15 of 2022 Abeykoon)
-eta_r = 0.9 #theorical maximal value for a Kaplan turbine
+eta_r = 0.92 #theorical maximal value for a Kaplan turbine
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
-H = 1
+H = 2.0
 P = rho_w * g * Q * H * eta_r
 print(f"height of the water column: {H :.4f} m \n")
 print (f"Power P: {P :.2f} W \n")
 
-print(f"Volumetric Flow rate Q: {Q * 3600 :.4f} m3/h \n")
-N = sigma * (2 * g * H)**(3/4) / (2*np.sqrt(np.pi * Q))
-#N = 0.7 * N #(correction factor)
-n = N * 60 # rpm
+print(f"Volumetric Flow rate Q: {Q * 3600 :.4f} m3/h <=> {Q :.4f} m3/s \n")
+#N = sigma * (2 * g * H)**(3/4) / (2*np.sqrt(np.pi * Q))
+#N = 0.35 * N #(correction factor)
+#n = N * 60 # rpm
+n = 700
+N = n / 60 # t/s
 
 N_s = N * np.sqrt(Q) / (H**(3/4))
 
@@ -63,6 +65,7 @@ print(f"Hydraulic efficiency eta: {eta_r :.2f} \n")
 print("Hydraulic Power P_hydraulic: {:.2f} W \n".format(rho_w * g * Q * H))
 print(f"Rotationnal speed N: {n :.2f} rpm <=> {N :.2f} t/s \n")
 print(f"Specific Rotationnal speed N_s: {N_s :.2f} \n")
+
 
 Re = (rho_w * c_x * (R_o)) / (1e-3) # dynamic viscosity of water ~ 1e-3 Pa.s
 
