@@ -235,6 +235,11 @@ with open(filename, 'w') as f:
     for i in range(len(x_2)):
         f.write(f"{x_2[len(x_2) - i - 1]:.6f} {y_2[len(x_2) - i - 1]:.6f} {z_2[len(x_2) - i - 1]:.6f}\n")
     
+filename = 'Part1/results/Arrete_centrale.txt'
+
+with open(filename, 'w') as f:
+    for i in range(len(x_inf)):
+        f.write(f"{x_inf[len(x_inf) - i - 1]:.6f} {y_inf[len(x_inf) - i - 1]:.6f} {z_inf[len(x_inf) - i - 1]:.6f}\n")
     
 filename = 'Part1/results/Contour_4.txt'
 
