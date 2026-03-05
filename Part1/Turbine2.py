@@ -257,9 +257,11 @@ print("\n")
 plt.figure(figsize=(10,6))
 for i in range(len(Radii)):
     color = cm.viridis(i / len(Radii))
-    plt.plot(y_1[i],z_1[i], 'o-',color = color)
-    plt.plot(y_2[i],z_2[i], 's--',color = color)
-    plt.plot(y_inf[i],z_inf[i],  'x',color = color)
+    plt.plot([y_1[i], y_inf[i]], [z_1[i], z_inf[i]], color='black', linewidth=0.2)
+    plt.plot([y_inf[i], y_2[i]], [z_inf[i], z_2[i]], color='black', linewidth=0.2)
+    plt.plot(y_1[i],z_1[i], 'o-',color = 'red')
+    plt.plot(y_2[i],z_2[i], 's--',color = 'red')
+    plt.plot(y_inf[i],z_inf[i],  'x',color = 'red')
 
 plt.title("Blade shape Turbine 2 - Top view")
 plt.xlabel("x (m)")
@@ -289,8 +291,8 @@ for i in range(len(Radii)):
     pchip_z = PchipInterpolator(t, z_points)(t_fine)
     
     # Tracé
-    ax.plot(pchip_x, pchip_y, pchip_z, '-', color=color)
-    ax.scatter(x_points, y_points, z_points, color=color, marker='o')
+    ax.plot(pchip_x, pchip_y, pchip_z, '-', color='black')
+    ax.scatter(x_points, y_points, z_points, color='red', marker='o', s=100)
 
 # Interpolation des lignes reliant tous les points 1, 2 et inf
 x1 = np.array(x_1)
