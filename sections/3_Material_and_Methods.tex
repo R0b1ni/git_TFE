@@ -1,4 +1,5 @@
 \section{Blade design}
+\subsection{General Calculations}
 The design of turbine blades is a critical aspect that directly influences the performance and efficiency of the turbine. We will here use the method proposed by ...(Abeykoon) for the blade design of a Kaplan turbine.
 
 
@@ -49,6 +50,14 @@ R_m = \frac{(R_o - R_i)}{2} = 0.07 \, \mathrm{m}
 \subsection{1D Meanline Design}
 With all these parameters, we can start the 1D meanline blade design. The first step is to set the angles, and different types of speed : \\
 To insert : velocity triangles, angles, etc...
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Velocity Triangle 1.pdf}
+    \caption{Velocities and angles at the inlet and outlet of the turbine, for the mean radius}
+    \label{fig:theorical_velocity_triangles}
+\end{figure}
+
 
 From the mass conservation theorem, we know that the axial velocity at the inlet of the turbine is equal to the axial velocity at the outlet of the turbine, therefore we can write:
 \begin{equation}
@@ -146,4 +155,36 @@ To insert : table of chord and pitch at each radius
 
 \subsection{Blade Geometry}
 
-With all the values calculated in the previous sections, we can now start defining the geometry of the blade. We will use a methodology based on Janjua et al. (2013)
+With all the values calculated in the previous sections, we can now start defining the geometry of the blade. We will use a methodology based on Janjua et al. (2013). We can first define the different convention for the different angles and coordinates of the blade, as shown in the following figure:
+To insert : blade geometry convention
+
+Knowing that for each radius $D_i = 2 r_i$, we can calculate the following quantities:
+\begin{equation}
+\left\{
+\begin{aligned}
+y_{1,i} &= \sin(\beta_{1,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{\infty ,i} - \beta_{1,i})}\\
+z_{1,i} &= \frac{y_{1,i}}{\tan(\beta_{1,i} - 90°)}\\
+x_{1,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{1,i}}{D}\right)}{2}\right)
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\left\{
+\begin{aligned}
+y_{2,i} &= -\sin(\beta_{2,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{2,i} - \beta_{\inf,i})}\\
+z_{2,i} &= \frac{y_{2,i}}{\tan(\beta_{2,i} - 90°)}\\
+x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\right)}{2}\right)
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\left\{
+\begin{aligned}
+y_{\inf,i} &= 0\\
+z_{\inf,i} &= 0\\
+x_{\inf,i} &= \frac{D_i}{2}
+\end{aligned}
+\right.
+\end{equation}
