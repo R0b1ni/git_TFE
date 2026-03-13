@@ -4,5 +4,5 @@
 \contentsline {section}{\numberline {3}Blade design}{1}{section.3}%
 \contentsline {subsection}{\numberline {3.1}General Calculations}{1}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}1D Meanline Design}{2}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}3-D design}{4}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Blade Geometry}{5}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.3}3-D design}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Blade Geometry}{6}{subsection.3.4}%

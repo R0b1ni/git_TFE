@@ -26,7 +26,7 @@ we can estimate the extracted power:
     P_{extracted} = \eta P_{hydraulic} = \eta \rho g Q \Delta H
 \end{equation}
 \begin{equation}
-    P_{extracted} = \Pext \, \mathrm{W}
+    P_{extracted} \approx 1 \, \mathrm{kW}
 \end{equation}
 
 
@@ -53,51 +53,61 @@ To insert : velocity triangles, angles, etc...
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/Velocity Triangle 1.pdf}
+    \includegraphics[width=0.8\textwidth]{images/Velocity Triangle 2.pdf}
     \caption{Velocities and angles at the inlet and outlet of the turbine, for the mean radius}
     \label{fig:theorical_velocity_triangles}
 \end{figure}
 
-
 From the mass conservation theorem, we know that the axial velocity at the inlet of the turbine is equal to the axial velocity at the outlet of the turbine, therefore we can write:
 \begin{equation}
-c_{2x,m} = c_{1x,m} = c_{x,pipe} = 2 \, \mathrm{m/s}
+c_{1x,m} = c_{2x,m} = c_{3x,m} = c_{x,pipe} = 2 \, \mathrm{m/s}
 \end{equation}
 
-Then, we will calculate $c_{2 \theta,m}$ velocity at the outlet of the turbine. To do this, we will use the Euler formula:
+Then, we will calculate $c_{2 \theta,m}$ velocity at the outlet of the stator. We also know that the stator doesn't produce any work so we only need the velocity triangle of the rotor.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Velocity Triangle 1.pdf}
+    \caption{Velocities and angles at the inlet and outlet of the turbine, for the mean radius}
+    \label{fig:theorical_velocity_triangles}
+\end{figure}
+We see that we chose to have no tangential velocity at the outlet of the rotor, which means that the flow will be purely axial at the outlet of the turbine. This is a common choice for Kaplan turbines as it allows to maximize the efficiency of the turbine by minimizing the kinetic energy losses at the outlet of the turbine.\\
+We can now use the Euler formula:
 \begin{equation}
 P = \omega T = \frac{U_m}{R_m} T 
 \end{equation}
 From the second law of motion, we can write for a constant radius:
 \begin{equation}
-T = \dot{m} R_m (c_{2 \theta,m} - c_{1 \theta,m}) 
+T = \dot{m} R_m (c_{2 \theta,m} - c_{3 \theta,m}) 
 \end{equation}
 which we can rewrite:
 \begin{equation}
-P = \dot{m} U_m (c_{2 \theta,m} - c_{1 \theta,m}) 
+P = \dot{m} U_m (c_{2 \theta,m} - c_{3 \theta,m}) 
 \end{equation}
-and we finally find $c_{2 \theta,m}$ knowing that $c_{1 \theta,m} = 0$:
+and we finally find $c_{2 \theta,m}$ knowing that $c_{3 \theta,m} = 0$:
 \begin{equation}
 c_{2\theta,m} = \frac{P}{\dot{m} U_m}
 \end{equation}
 
 We can now calculate the relatives velocities knowing that:
 \begin{equation}
-\vec{w} = \vec{c} + \vec{U}
+\vec{c} = \vec{w} + \vec{U}
 \end{equation}
 \begin{equation}
 \vec{c} = \vec{c_x} + \vec{c_\theta}
 \end{equation}
+On the velocity triangle, we can also see that $c_{3,m} = c_{3x,m}$ as $c_{3 \theta,m} = 0$.\\
 We then have:
 \begin{equation}
-w_{1,m} = \sqrt{c_x^2 + U^2}
+w_{3,m} = \sqrt{c_x^2 + U^2}
 \end{equation}
 \begin{equation}
-w_{2,m} = \sqrt{c_x^2 + (U + c_{2\theta,m})^2}
+w_{2,m} = \sqrt{c_x^2 + (w_{2 \theta,m})^2} =\sqrt{c_x^2 + (U - c_{2\theta,m})^2}
+\end{equation}
+\begin{equation}
+c_{2,m} = \sqrt{c_{2\theta,m}^2 + c_x^2}
 \end{equation}
 
-
-We can therefore plot the velocity triangles at the inlet and outlet of the turbine, for the mean radius: 
+We can therefore plot the velocity triangles at the inlet and outlet of the rotor, for the mean radius: 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Part1/results/Velocity_Triangles.pdf}
@@ -128,13 +138,13 @@ The velocity triangle is then calculated as:
 \begin{equation}
 \left\{
 \begin{aligned}
-c_{2x,i} &= c_{1x,i} = c_{x} = 2 \, \mathrm{m/s} \\
+c_{3x,i} &= c_{2x,i} = c_{x} = 2 \, \mathrm{m/s} \\
 c_{2\theta, i} &= c_{2\theta}(r_i) = \frac{K}{r_i} \\
-c_{1,i} &= \sqrt{c_{x}^2 + c_{1\theta,i}^2} = c_x \\
+c_{3,i} &= \sqrt{c_{x}^2 + c_{3\theta,i}^2} = c_x \\
 c_{2,i} &= \sqrt{c_{x}^2 + c_{2\theta,i}^2} \\
-w_{1,i} &= \sqrt{c_{x}^2 + U_i^2} \\
-w_{2,i} &= \sqrt{c_{x}^2 + \left(U_i + c_{2\theta, i}\right)^2}
-w_{\inf , i} = (w_{1,i} + w_{2,i})/2
+w_{3,i} &= \sqrt{c_{x}^2 + U_i^2} \\
+w_{2,i} &= \sqrt{c_{x}^2 + \left(U_i - c_{2\theta, i}\right)^2}\\
+w_{\inf , i} &= (w_{2,i} + w_{3,i})/2
 \end{aligned}
 \right.
 \end{equation}
@@ -162,9 +172,9 @@ Knowing that for each radius $D_i = 2 r_i$, we can calculate the following quant
 \begin{equation}
 \left\{
 \begin{aligned}
-y_{1,i} &= \sin(\beta_{1,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{\infty ,i} - \beta_{1,i})}\\
-z_{1,i} &= \frac{y_{1,i}}{\tan(\beta_{1,i} - 90°)}\\
-x_{1,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{1,i}}{D}\right)}{2}\right)
+y_{2,i} &= \sin(\beta_{2,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{\infty ,i} - \beta_{2,i})}\\
+z_{2,i} &= \frac{y_{2,i}}{\tan(\beta_{2,i} - 90°)}\\
+x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\right)}{2}\right)
 \end{aligned}
 \right.
 \end{equation}
@@ -172,9 +182,9 @@ x_{1,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{1,i}}{D}\
 \begin{equation}
 \left\{
 \begin{aligned}
-y_{2,i} &= -\sin(\beta_{2,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{2,i} - \beta_{\inf,i})}\\
-z_{2,i} &= \frac{y_{2,i}}{\tan(\beta_{2,i} - 90°)}\\
-x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\right)}{2}\right)
+y_{3,i} &= -\sin(\beta_{3,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{3,i} - \beta_{\inf,i})}\\
+z_{3,i} &= \frac{y_{3,i}}{\tan(\beta_{3,i} - 90°)}\\
+x_{3,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{3,i}}{D}\right)}{2}\right)
 \end{aligned}
 \right.
 \end{equation}

@@ -1481,14 +1481,19 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
+INPUT ./images/Velocity Triangle 2.pdf
+INPUT ./images/Velocity Triangle 2.pdf
+INPUT images/Velocity Triangle 2.pdf
+INPUT ./images/Velocity Triangle 2.pdf
+INPUT ./images/Velocity Triangle 2.pdf
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT ./images/Velocity Triangle 1.pdf
 INPUT ./images/Velocity Triangle 1.pdf
 INPUT images/Velocity Triangle 1.pdf
 INPUT ./images/Velocity Triangle 1.pdf
 INPUT ./images/Velocity Triangle 1.pdf
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT ./Part1/results/velocity_triangles.pdf
 INPUT ./Part1/results/velocity_triangles.pdf
 INPUT Part1/results/velocity_triangles.pdf

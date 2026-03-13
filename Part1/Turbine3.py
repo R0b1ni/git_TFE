@@ -32,7 +32,7 @@ def draw_arrow(ax, x0, y0, x1, y1, color, label=None,
         )
 
 # Data
-c_x_pipe = 3 # m/s (axial speed before the turbine)
+c_x_pipe = 2.5 # m/s (axial speed before the turbine)
 
 rho_w = 1000 # kg/m3
 g = 9.81 # m/s2
@@ -47,7 +47,7 @@ sigma = 1.6 # blockage ratio (from fig 15 of 2022 Abeykoon)
 eta_r = 0.92 #theorical maximal value for a Kaplan turbine
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
-H = 1
+H = 1.0
 P = rho_w * g * Q * H * eta_r
 print(f"height of the water column: {H :.4f} m \n")
 print (f"Power P: {P :.2f} W \n")
@@ -222,7 +222,7 @@ ys_inf_new = []
 zs_inf_new = []
 
 def delta_r (z):
-    alpha = 0.0
+    alpha = 0.1
     return alpha * z
 
 for i in range (len(Radii)):
@@ -256,14 +256,18 @@ for i in range (len(Radii)):
     ys_inf.append( 0)
     zs_inf.append(offset)
     
+    r_old = Radii[i]
+    r_new = np.sqrt(r_old**2 + np.abs(delta_r(zs_2[i]) * (2 * Radii[0] - delta_r(zs_2[i])) ))
     
-    xs_inf_new.append(xs_inf[i] - delta_r(z_inf[i] - zs_2[i]))
+    xs_inf_new.append(r_new)
     ys_inf_new.append( 0)
     zs_inf_new.append(offset)
     
+    print(zs_1[i],z_inf[i], zs_2[i])
+    r_new = np.sqrt(r_old**2 + np.abs(delta_r(zs_1[i] + zs_2[i]) * (2 * Radii[0] + delta_r(zs_1[i] + zs_2[i]))) )
     teta = np.arctan2(xs_1[i], ys_1[i])
-    xs_1_new.append( (Radii[i] + delta_r(zs_1[i] - zs_2[i])) * np.sin(teta) )
-    ys_1_new.append( (Radii[i] + delta_r(zs_1[i] - zs_2[i])) * np.cos(teta) )
+    xs_1_new.append( (r_new) * np.sin(teta) )
+    ys_1_new.append( (r_new) * np.cos(teta) )
     zs_1_new.append(zs_1[i])
     
     teta = np.arctan2(xs_2[i], ys_2[i])
