@@ -1,9 +1,9 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[68] biber:340> INFO - === Fri Mar 13, 2026, 19:31:57
-[80] Biber.pm:418> INFO - Reading 'main.bcf'
-[129] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
-[139] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[139] bbl.pm:757> INFO - Output to main.bbl
-[139] Biber.pm:130> WARN - The file 'main.bcf' does not contain any citations!
-[139] Biber.pm:132> INFO - WARNINGS: 1
+[66] biber:340> INFO - === Wed Mar 18, 2026, 17:09:09
+[77] Biber.pm:418> INFO - Reading 'main.bcf'
+[127] Biber.pm:972> INFO - Found 2 citekeys in bib section 0
+[137] Biber.pm:4383> INFO - Processing section 0
+[144] Biber.pm:4574> INFO - Looking for bibtex file 'sections/ref.bib' for section 0
+[356] Utils.pm:398> ERROR - Cannot find 'sections/ref.bib'!
+[357] Biber.pm:135> INFO - ERRORS: 1

@@ -44,7 +44,7 @@ c_x = c_x_pipe * (R_o**2)/(R_o**2 - R_i**2) # en fonction de l'élargissement
 print(f"Axial speed c_x: {c_x :.2f} m/s\n")
 
 sigma = 1.6 # blockage ratio (from fig 15 of 2022 Abeykoon)
-eta_r = 0.92 #theorical maximal value for a Kaplan turbine
+eta_r = 0.94 #theorical maximal value for a Kaplan turbine
 
 Q = c_x * np.pi * (R_o**2 - R_i**2)
 H = 1.0
@@ -53,13 +53,12 @@ print(f"height of the water column: {H :.4f} m \n")
 print (f"Power P: {P :.2f} W \n")
 
 print(f"Volumetric Flow rate Q: {Q * 3600 :.4f} m3/h <=> {Q :.4f} m3/s \n")
-#N = sigma * (2 * g * H)**(3/4) / (2*np.sqrt(np.pi * Q))
-#N = 0.35 * N #(correction factor)
-#n = N * 60 # rpm
-n = 800
-N = n / 60 # t/s
+N = sigma * (2 * g * H)**(3/4) / (2*np.sqrt(np.pi * Q))
+print(f"Rotationnal speed N: {N :.2f} t/s <=> {N * 60 :.2f} rpm \n")
+n = N * 60 # rpm
+omega = 2 * np.pi * N # rad/s
 
-N_s = N * np.sqrt(Q) / (H**(3/4))
+N_s = n * np.sqrt(P/1000) / ((H)**(5/4))
 
 print(f"Hydraulic efficiency eta: {eta_r :.2f} \n")
 print("Hydraulic Power P_hydraulic: {:.2f} W \n".format(rho_w * g * Q * H))
@@ -81,7 +80,7 @@ c_2x = c_x # mass conservation
 c_3x = c_x
 c3 = c_3x # assuming axial outflow
 
-# 1D design
+# 1D - Design
 c_2teta = P/(rho_w * Q * U_m)
 
 def c_teta(r):
@@ -158,14 +157,14 @@ for i in range (len(Radii)):
         ax.set_title('Velocity Triangles', fontsize=14)
         ax.scatter([0], [0], color='black', zorder=5)
 
-        #ax.set_aspect('equal')
+        ax.set_aspect('equal')
 
         #ax.set_xlim(-0.25, 9)
         # ax.set_ylim(-2.5, 0)
 
         ax.grid(True, linestyle='--', alpha=0.4)
         plt.tight_layout()
-        #plt.savefig('Part1/results/velocity_triangles.pdf')
+        plt.savefig('Part1/results/velocity_triangles.pdf')
         plt.show()
 
 
@@ -189,7 +188,8 @@ pd.options.display.float_format = "{:,.3f}".format
 print(df.to_string(index=False))
 print("\n")
 
-#calculation of the x, y, z coordinates of the blades
+# 3D - Design
+
 x_1 = []
 y_1 = []
 z_1 = []
@@ -222,7 +222,7 @@ ys_inf_new = []
 zs_inf_new = []
 
 def delta_r (z):
-    alpha = 0.1
+    alpha = 0.0816
     return alpha * z
 
 for i in range (len(Radii)):
@@ -257,17 +257,16 @@ for i in range (len(Radii)):
     zs_inf.append(offset)
     
     r_old = Radii[i]
-    r_new = np.sqrt(r_old**2 + np.abs(delta_r(zs_2[i]) * (2 * Radii[0] - delta_r(zs_2[i])) ))
+    r_new = np.sqrt(r_old**2 + np.abs(delta_r(zs_2[i]) * (2 * Radii[0] + delta_r(zs_2[i])) ))
     
     xs_inf_new.append(r_new)
     ys_inf_new.append( 0)
     zs_inf_new.append(offset)
     
-    print(zs_1[i],z_inf[i], zs_2[i])
     r_new = np.sqrt(r_old**2 + np.abs(delta_r(zs_1[i] + zs_2[i]) * (2 * Radii[0] + delta_r(zs_1[i] + zs_2[i]))) )
     teta = np.arctan2(xs_1[i], ys_1[i])
-    xs_1_new.append( (r_new) * np.sin(teta) )
-    ys_1_new.append( (r_new) * np.cos(teta) )
+    xs_1_new.append( (r_new))
+    ys_1_new.append( 0)
     zs_1_new.append(zs_1[i])
     
     teta = np.arctan2(xs_2[i], ys_2[i])
@@ -285,132 +284,210 @@ zs_2 = zs_2_new
 xs_inf = xs_inf_new
 ys_inf = ys_inf_new
 zs_inf = zs_inf_new    
-# Plotting the blade shape - Top view
 
-'''plt.figure(figsize=(10,6))
-for i in range(len(Radii)):
-    color = cm.viridis(i / len(Radii))
-    plt.plot([y_1[i], y_inf[i]], [z_1[i], z_inf[i]], color='black', linewidth=0.2)
-    plt.plot([y_inf[i], y_2[i]], [z_inf[i], z_2[i]], color='black', linewidth=0.2)
-    plt.plot(y_1[i],z_1[i], 'o-',color = 'red')
-    plt.plot(y_2[i],z_2[i], 's--',color = 'red')
-    plt.plot(y_inf[i],z_inf[i],  'x',color = 'red')
+def write_coordinates_to_file() :
+    filename = 'Part1/results/RotorBlade/Contour_1.txt'
 
-plt.title("Blade shape Turbine 2 - Top view")
-plt.xlabel("x (m)")
-plt.ylabel("y (m)")
-plt.axis('equal')
-plt.grid(False)
-#plt.savefig('Part1/results/Twist_view.pdf')
-plt.show()'''
+    with open(filename, 'w') as f:
+        for i in range(len(x_1)):
+            f.write(f"{x_1[i]:.6f} {y_1[i]:.6f} {z_1[i]:.6f}\n")
+        
+    filename = 'Part1/results/RotorBlade/Contour_2.txt'
 
-fig = plt.figure(figsize=(10,6))
-ax = fig.add_subplot(111, projection='3d')
+    with open(filename, 'w') as f:
+        f.write(f"{x_1[4]:.6f} {y_1[4]:.6f} {z_1[4]:.6f}\n")
+        f.write(f"{x_inf[4]:.6f} {y_inf[4]:.6f} {z_inf[4]:.6f}\n")
+        f.write(f"{x_2[4]:.6f} {y_2[4]:.6f} {z_2[4]:.6f}\n")
+        
+    filename = 'Part1/results/RotorBlade/Contour_3.txt'
 
-for i in range(len(Radii)):
-    color = cm.viridis(i / len(Radii))
+    with open(filename, 'w') as f:
+        for i in range(len(x_2)):
+            f.write(f"{x_2[len(x_2) - i - 1]:.6f} {y_2[len(x_2) - i - 1]:.6f} {z_2[len(x_2) - i - 1]:.6f}\n")
+        
+    filename = 'Part1/results/RotorBlade/Arrete_centrale.txt'
+
+    with open(filename, 'w') as f:
+        for i in range(len(x_inf)):
+            f.write(f"{x_inf[len(x_inf) - i - 1]:.6f} {y_inf[len(x_inf) - i - 1]:.6f} {z_inf[len(x_inf) - i - 1]:.6f}\n")
+        
+    filename = 'Part1/results/RotorBlade/Contour_4.txt'
+
+    with open(filename, 'w') as f:
+        f.write(f"{x_2[0]:.6f} {y_2[0]:.6f} {z_2[0]:.6f}\n")
+        f.write(f"{x_inf[0]:.6f} {y_inf[0]:.6f} {z_inf[0]:.6f}\n")
+        f.write(f"{x_1[0]:.6f} {y_1[0]:.6f} {z_1[0]:.6f}\n")
+
+
+
+
+    filename = 'Part1/results/StatorBlade/Contour_1s.txt'
+
+    with open(filename, 'w') as f:
+        for i in range(len(x_1)):
+            f.write(f"{xs_1[i]:.6f} {ys_1[i]:.6f} {zs_1[i]:.6f}\n")
+        
+    filename = 'Part1/results/StatorBlade/Contour_2s.txt'
+
+    with open(filename, 'w') as f:
+        f.write(f"{xs_1[4]:.6f} {ys_1[4]:.6f} {zs_1[4]:.6f}\n")
+        f.write(f"{xs_inf[4]:.6f} {ys_inf[4]:.6f} {zs_inf[4]:.6f}\n")
+        f.write(f"{xs_2[4]:.6f} {ys_2[4]:.6f} {zs_2[4]:.6f}\n")
+        
+    filename = 'Part1/results/StatorBlade/Contour_3s.txt'
+
+    with open(filename, 'w') as f:
+        for i in range(len(xs_2)):
+            f.write(f"{xs_2[len(xs_2) - i - 1]:.6f} {ys_2[len(xs_2) - i - 1]:.6f} {zs_2[len(xs_2) - i - 1]:.6f}\n")
+        
+    filename = 'Part1/results/StatorBlade/Arrete_centrale_s.txt'
+
+    with open(filename, 'w') as f:
+        for i in range(len(xs_inf)):
+            f.write(f"{xs_inf[len(xs_inf) - i - 1]:.6f} {ys_inf[len(xs_inf) - i - 1]:.6f} {zs_inf[len(xs_inf) - i - 1]:.6f}\n")
+        
+    filename = 'Part1/results/StatorBlade/Contour_4s.txt'
+
+    with open(filename, 'w') as f:
+        f.write(f"{xs_2[0]:.6f} {ys_2[0]:.6f} {zs_2[0]:.6f}\n")
+        f.write(f"{xs_inf[0]:.6f} {ys_inf[0]:.6f} {zs_inf[0]:.6f}\n")
+        f.write(f"{xs_1[0]:.6f} {ys_1[0]:.6f} {zs_1[0]:.6f}\n")
+
+def plot_rotor_top_view():
+    # Plotting the blade shape - Top view
+    plt.figure(figsize=(10,6))
+    for i in range(len(Radii)):
+        color = cm.viridis(i / len(Radii))
+        plt.plot([y_1[i], y_inf[i]], [z_1[i], z_inf[i]], color='black', linewidth=0.2)
+        plt.plot([y_inf[i], y_2[i]], [z_inf[i], z_2[i]], color='black', linewidth=0.2)
+        plt.plot(y_1[i],z_1[i], 'o-',color = 'red')
+        plt.plot(y_2[i],z_2[i], 's--',color = 'red')
+        plt.plot(y_inf[i],z_inf[i],  'x',color = 'red')
+
+    plt.title("Blade shape Turbine 2 - Top view")
+    plt.xlabel("y (m)")
+    plt.ylabel("z (m)")
+    plt.axis('equal')
+    plt.grid(False)
+    plt.savefig('Part1/results/Twist_view.pdf')
+    plt.show()
+
+def plot_blade_3D():
+    fig = plt.figure(figsize=(10,6))
+    ax = fig.add_subplot(111, projection='3d')
+
+    for i in range(len(Radii)):
+        color = cm.viridis(i / len(Radii))
+        
+        x_points = [x_1[i], x_inf[i], x_2[i]]
+        y_points = [y_1[i], y_inf[i], y_2[i]]
+        z_points = [z_1[i], z_inf[i], z_2[i]]
+        
+        xs_points = [xs_1[i], xs_inf[i], xs_2[i]]
+        ys_points = [ys_1[i], ys_inf[i], ys_2[i]]
+        zs_points = [zs_1[i], zs_inf[i], zs_2[i]]
+        
+        # interpolation spline
+        t = np.linspace(0, 1, len(x_points))
+        t_fine = np.linspace(0, 1, 50)  # plus de points pour une courbe douce
+
+        # Interpolation PCHIP (préserve forme, évite oscillations)
+        pchip_x = PchipInterpolator(t, x_points)(t_fine)
+        pchip_y = PchipInterpolator(t, y_points)(t_fine)
+        pchip_z = PchipInterpolator(t, z_points)(t_fine)
+        
+        pchip_xs = PchipInterpolator(t, xs_points)(t_fine)
+        pchip_ys = PchipInterpolator(t, ys_points)(t_fine)
+        pchip_zs = PchipInterpolator(t, zs_points)(t_fine)
+        
+        # Tracé
+        ax.plot(pchip_x, pchip_y, pchip_z, '-', color='black')
+        ax.plot(pchip_xs, pchip_ys, pchip_zs, '-', color='black')
+        ax.scatter(x_points, y_points, z_points, color='red', marker='o', s=30, alpha=0.7)
+        ax.scatter(xs_points, ys_points, zs_points, color='red', marker='o', s=30, alpha=0.7)
+        
+
+    # Interpolation des lignes reliant tous les points 1, 2 et inf
+    x1 = np.array(x_1)
+    y1 = np.array(y_1)
+    z1 = np.array(z_1)
+    x2 = np.array(x_2)
+    y2 = np.array(y_2)
+    z2 = np.array(z_2)
+    xinf = np.array(x_inf)
+    yinf = np.array(y_inf)
+    zinf = np.array(z_inf)
+
+    t = np.linspace(0, 1, len(x1))
+    t_fine = np.linspace(0, 1, 200)
+
+    spline_x1 = make_interp_spline(t, x1, k=2)(t_fine)
+    spline_y1 = make_interp_spline(t, y1, k=2)(t_fine)
+    spline_z1 = make_interp_spline(t, z1, k=2)(t_fine)
+    spline_x2 = make_interp_spline(t, x2, k=2)(t_fine)
+    spline_y2 = make_interp_spline(t, y2, k=2)(t_fine)
+    spline_z2 = make_interp_spline(t, z2, k=2)(t_fine)
+    spline_xinf = make_interp_spline(t, xinf, k=2)(t_fine)
+    spline_yinf = make_interp_spline(t, yinf, k=2)(t_fine)
+    spline_zinf = make_interp_spline(t, zinf, k=2)(t_fine)
+
+    ax.plot(spline_x1, spline_y1, spline_z1, 'black', linewidth=2.0)
+    ax.plot(spline_x2, spline_y2, spline_z2, 'black', linewidth=2.0)
+    ax.plot(spline_xinf, spline_yinf, spline_zinf, 'black', linewidth=2.0)
+
+    xs1 = np.array(xs_1)
+    ys1 = np.array(ys_1)
+    zs1 = np.array(zs_1)
+    xs2 = np.array(xs_2)
+    ys2 = np.array(ys_2)
+    zs2 = np.array(zs_2)
+    xsinf = np.array(xs_inf)
+    ysinf = np.array(ys_inf)
+    zsinf = np.array(zs_inf)
+
+    spline_xs1 = make_interp_spline(t, xs1, k=2)(t_fine)
+    spline_ys1 = make_interp_spline(t, ys1, k=2)(t_fine)
+    spline_zs1 = make_interp_spline(t, zs1, k=2)(t_fine)
+    spline_xs2 = make_interp_spline(t, xs2, k=2)(t_fine)
+    spline_ys2 = make_interp_spline(t, ys2, k=2)(t_fine)
+    spline_zs2 = make_interp_spline(t, zs2, k=2)(t_fine)
+    spline_xsinf = make_interp_spline(t, xsinf, k=2)(t_fine)
+    spline_ysinf = make_interp_spline(t, ysinf, k=2)(t_fine)
+    spline_zsinf = make_interp_spline(t, zsinf, k=2)(t_fine)
+
+    ax.plot(spline_xs1, spline_ys1, spline_zs1, 'black', linewidth=2.0)
+    ax.plot(spline_xs2, spline_ys2, spline_zs2, 'black', linewidth=2.0)
+    ax.plot(spline_xsinf, spline_ysinf, spline_zsinf, 'black', linewidth=2.0)
+
+    # Paramètres du rotor (cylindre intérieur)
+    height = (max(zs_1) - min(z_2) ) * 1.2  # hauteur approximative
+    theta = np.linspace(0, 2*np.pi, 60)
+    z_cyl = np.linspace(-height/4, height, 40)
+    theta, z_cyl = np.meshgrid(theta, z_cyl)
+
+    # Coordonnées du cylindre
+    x_cyl = R_i * np.cos(theta)
+    y_cyl = R_i * np.sin(theta)
+    z_cyl = z_cyl
+
+    # Tracé du cylindre
+    ax.plot_surface(x_cyl, y_cyl, z_cyl, color = 'black', alpha=0.5, linewidth=0, shade=True)
+
+
+
+    ax.set_title("Blade shape Turbine 3D view")
+    ax.set_xlabel("X (m)")
+    ax.set_ylabel("Y (m)")
+    ax.set_zlabel("Z (m)")
+    ax.set_xlim(-0.1, 0.1)
+    ax.set_ylim(-0.1, 0.1)
+    ax.set_zlim(-0.1, 0.1)
+    plt.savefig('Part1/results/3D_Model.pdf')
+    plt.show()
+
+def __main__():
+    write_coordinates_to_file()
+    plot_rotor_top_view()
+    plot_blade_3D()
     
-    x_points = [x_1[i], x_inf[i], x_2[i]]
-    y_points = [y_1[i], y_inf[i], y_2[i]]
-    z_points = [z_1[i], z_inf[i], z_2[i]]
-    
-    xs_points = [xs_1[i], xs_inf[i], xs_2[i]]
-    ys_points = [ys_1[i], ys_inf[i], ys_2[i]]
-    zs_points = [zs_1[i], zs_inf[i], zs_2[i]]
-    
-    # interpolation spline
-    t = np.linspace(0, 1, len(x_points))
-    t_fine = np.linspace(0, 1, 50)  # plus de points pour une courbe douce
-
-    # Interpolation PCHIP (préserve forme, évite oscillations)
-    pchip_x = PchipInterpolator(t, x_points)(t_fine)
-    pchip_y = PchipInterpolator(t, y_points)(t_fine)
-    pchip_z = PchipInterpolator(t, z_points)(t_fine)
-    
-    pchip_xs = PchipInterpolator(t, xs_points)(t_fine)
-    pchip_ys = PchipInterpolator(t, ys_points)(t_fine)
-    pchip_zs = PchipInterpolator(t, zs_points)(t_fine)
-    
-    # Tracé
-    ax.plot(pchip_x, pchip_y, pchip_z, '-', color='black')
-    ax.plot(pchip_xs, pchip_ys, pchip_zs, '-', color='black')
-    ax.scatter(x_points, y_points, z_points, color='red', marker='o', s=30, alpha=0.7)
-    ax.scatter(xs_points, ys_points, zs_points, color='red', marker='o', s=30, alpha=0.7)
-
-# Interpolation des lignes reliant tous les points 1, 2 et inf
-x1 = np.array(x_1)
-y1 = np.array(y_1)
-z1 = np.array(z_1)
-x2 = np.array(x_2)
-y2 = np.array(y_2)
-z2 = np.array(z_2)
-xinf = np.array(x_inf)
-yinf = np.array(y_inf)
-zinf = np.array(z_inf)
-
-t = np.linspace(0, 1, len(x1))
-t_fine = np.linspace(0, 1, 200)
-
-spline_x1 = make_interp_spline(t, x1, k=2)(t_fine)
-spline_y1 = make_interp_spline(t, y1, k=2)(t_fine)
-spline_z1 = make_interp_spline(t, z1, k=2)(t_fine)
-spline_x2 = make_interp_spline(t, x2, k=2)(t_fine)
-spline_y2 = make_interp_spline(t, y2, k=2)(t_fine)
-spline_z2 = make_interp_spline(t, z2, k=2)(t_fine)
-spline_xinf = make_interp_spline(t, xinf, k=2)(t_fine)
-spline_yinf = make_interp_spline(t, yinf, k=2)(t_fine)
-spline_zinf = make_interp_spline(t, zinf, k=2)(t_fine)
-
-ax.plot(spline_x1, spline_y1, spline_z1, 'black', linewidth=2.0)
-ax.plot(spline_x2, spline_y2, spline_z2, 'black', linewidth=2.0)
-ax.plot(spline_xinf, spline_yinf, spline_zinf, 'black', linewidth=2.0)
-
-xs1 = np.array(xs_1)
-ys1 = np.array(ys_1)
-zs1 = np.array(zs_1)
-xs2 = np.array(xs_2)
-ys2 = np.array(ys_2)
-zs2 = np.array(zs_2)
-xsinf = np.array(xs_inf)
-ysinf = np.array(ys_inf)
-zsinf = np.array(zs_inf)
-
-spline_xs1 = make_interp_spline(t, xs1, k=2)(t_fine)
-spline_ys1 = make_interp_spline(t, ys1, k=2)(t_fine)
-spline_zs1 = make_interp_spline(t, zs1, k=2)(t_fine)
-spline_xs2 = make_interp_spline(t, xs2, k=2)(t_fine)
-spline_ys2 = make_interp_spline(t, ys2, k=2)(t_fine)
-spline_zs2 = make_interp_spline(t, zs2, k=2)(t_fine)
-spline_xsinf = make_interp_spline(t, xsinf, k=2)(t_fine)
-spline_ysinf = make_interp_spline(t, ysinf, k=2)(t_fine)
-spline_zsinf = make_interp_spline(t, zsinf, k=2)(t_fine)
-
-ax.plot(spline_xs1, spline_ys1, spline_zs1, 'black', linewidth=2.0)
-ax.plot(spline_xs2, spline_ys2, spline_zs2, 'black', linewidth=2.0)
-ax.plot(spline_xsinf, spline_ysinf, spline_zsinf, 'black', linewidth=2.0)
-
-# Paramètres du rotor (cylindre intérieur)
-height = (max(zs_1) - min(z_2) ) * 1.2  # hauteur approximative
-theta = np.linspace(0, 2*np.pi, 60)
-z_cyl = np.linspace(-height/4, height, 40)
-theta, z_cyl = np.meshgrid(theta, z_cyl)
-
-# Coordonnées du cylindre
-x_cyl = R_i * np.cos(theta)
-y_cyl = R_i * np.sin(theta)
-z_cyl = z_cyl
-
-# Tracé du cylindre
-ax.plot_surface(x_cyl, y_cyl, z_cyl, color = 'black', alpha=0.5, linewidth=0, shade=True)
-
-
-
-ax.set_title("Blade shape Turbine 3D view")
-ax.set_xlabel("X (m)")
-ax.set_ylabel("Y (m)")
-ax.set_zlabel("Z (m)")
-ax.set_xlim(-0.1, 0.1)
-ax.set_ylim(-0.1, 0.1)
-ax.set_zlim(-0.1, 0.1)
-#plt.savefig('Part1/results/3D_Model.pdf')
-plt.show()
+__main__()

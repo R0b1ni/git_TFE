@@ -1,23 +1,24 @@
-\section{Blade design}
-\subsection{General Calculations}
-The design of turbine blades is a critical aspect that directly influences the performance and efficiency of the turbine. We will here use the method proposed by ...(Abeykoon) for the blade design of a Kaplan turbine.
+\section{Blade's design}
 
+\textcolor{red}{checker les conventions pour citer dans un texte}
+
+\subsection{General Calculations}
+
+The design of turbine blades is a critical aspect that directly influences the performance and efficiency of the turbine. Here, we will use the method proposed by Abeycoon \cite{abeykoon2022} for the blade design of a Kaplan turbine.\\
 
 The first step is to estimate the extracted power of the turbine to start the design.
-Based on the input data, we can start by estimating the blockage factor with the following graph(from fig 15 of 2022 Abeykoon):
-\begin{itemize}
-    \item $\sigma = 1.6$
-\end{itemize}
+Based on the input data, we can start by estimating the blockage factor with the following graph (from fig 15 of \cite{abeykoon2022}): $\sigma = 1.6$. \textcolor{red}{Rajouter le graphe}\\
+
 Considering: (from fig 15 of 2022 Abeykoon)
 \begin{equation}
     R_i = 0.4 \times R_o = 0.04 \, \mathrm{m}
 \end{equation}
-We also obatin that we have 4 blades for the turbine, which is a common choice for Kaplan turbines.
+It also allows to determine that the optimal number of blades is 4, symmetrically placed around the runner, which is a common choice among Kaplan turbines.\\
 
-We can calculate the volumetric flowrate $Q$:
+We can calculate the volumetric flowrate $Q$ :
 \begin{equation}
     Q = \pi (R_o^2 - R_i^2) V_x
-      = \Qvol \, \mathrm{m^3/h}
+      = 190 \, \mathrm{m^3/h}
 \end{equation}
 
 By taking the maximal theorical hydraulic efficiency for a Kaplan turbine,
@@ -29,33 +30,33 @@ we can estimate the extracted power:
     P_{extracted} \approx 1 \, \mathrm{kW}
 \end{equation}
 
-
 First, we can calculate the rotationnal speed based on the following correlation: (Abeykoon)
 \begin{equation}
 N = \sigma \frac{(2gH)^{3/4}}{2\sqrt{\pi Q}}
 \end{equation}
 Therefore, we have:
 \begin{equation}
-N = \N \, \mathrm{rpm}
+N \approx 900 \, \mathrm{rpm}
 \end{equation}
 We can also obtain the mean speed of the blade:
 \begin{equation}
 U_m = 2\pi R_m \frac{N}{60}
 \end{equation}
-with
+with $R_m$ the mean radius computed as :
 \begin{equation}
-R_m = \frac{(R_o - R_i)}{2} = 0.07 \, \mathrm{m}
+R_m = \frac{(R_o + R_i)}{2} = 0.07 \, \mathrm{m}
 \end{equation}
 
 \subsection{1D Meanline Design}
+
 With all these parameters, we can start the 1D meanline blade design. The first step is to set the angles, and different types of speed : \\
-To insert : velocity triangles, angles, etc...
+\textcolor{red}{To insert : velocity triangles, angles, etc...}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/Velocity Triangle 2.pdf}
-    \caption{Velocities and angles at the inlet and outlet of the turbine, for the mean radius}
-    \label{fig:theorical_velocity_triangles}
+    \includegraphics[width=0.55\textwidth]{images/Velocity Triangle 2.pdf}
+    \caption{Velocities and angles at the inlet and outlet of the turbine, for the mean radius.}
+    \label{fig:theorical_velocity_triangles_2}
 \end{figure}
 
 From the mass conservation theorem, we know that the axial velocity at the inlet of the turbine is equal to the axial velocity at the outlet of the turbine, therefore we can write:
@@ -63,12 +64,13 @@ From the mass conservation theorem, we know that the axial velocity at the inlet
 c_{1x,m} = c_{2x,m} = c_{3x,m} = c_{x,pipe} = 2 \, \mathrm{m/s}
 \end{equation}
 
-Then, we will calculate $c_{2 \theta,m}$ velocity at the outlet of the stator. We also know that the stator doesn't produce any work so we only need the velocity triangle of the rotor.
+Then, we will calculate $c_{2 \theta,m}$, the velocity at the outlet of the stator. We also know that the stator doesn't produce any work so we only need the velocity triangle of the rotor.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Velocity Triangle 1.pdf}
     \caption{Velocities and angles at the inlet and outlet of the turbine, for the mean radius}
-    \label{fig:theorical_velocity_triangles}
+    \label{fig:theorical_velocity_triangles_1}
 \end{figure}
 We see that we chose to have no tangential velocity at the outlet of the rotor, which means that the flow will be purely axial at the outlet of the turbine. This is a common choice for Kaplan turbines as it allows to maximize the efficiency of the turbine by minimizing the kinetic energy losses at the outlet of the turbine.\\
 We can now use the Euler formula:
@@ -110,18 +112,24 @@ c_{2,m} = \sqrt{c_{2\theta,m}^2 + c_x^2}
 We can therefore plot the velocity triangles at the inlet and outlet of the rotor, for the mean radius: 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Part1/results/Velocity_Triangles.pdf}
+    \includegraphics[width=0.7\textwidth]{Part1/results/Velocity_Triangles.pdf}
     \caption{Velocity triangles at the inlet and outlet of the turbine, for the mean radius}
     \label{fig:velocity_triangles}
 \end{figure}
 
 \subsection{3-D design}
-Once we have the velocity triangles at $R_m$, the next step is to divide the blade into several sections and calculate the velocity triangles at each section as we can see on the following figure:
 
-To insert : blade sections 
+Once we have the velocity triangles at $R_m$, the next step is to divide the blade into several sections and calculate the velocity triangles at each section. We used 5 different radii for the blade design, which are equally spaced between $R_i$ and $R_o$. We also define the following convention for the different angles and coordinates of the blade, but we will come back to them in the next section when we will define the blade geometry:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Dot Conventions.pdf}
+    \caption{Coordinates Conventions for the blade design}
+    \label{fig:dot_conventions}
+\end{figure}
 
 We can choose a vortex distribution for the blade design.
-Here, we chose a free vortex distribution, which means that the tangential velocity at the inlet of the turbine will be inversely proportional to the radius and we obtain a constant work along the blade. We can therefore write:
+Here, we chose a free vortex distribution, which means that the tangential velocity at the inlet of the turbine will be inversely proportional to the radius. We can therefore write:
 \begin{equation}
 c_{2 \theta}(r) = \frac{K}{r}
 \end{equation}
@@ -129,27 +137,30 @@ with $K$ a constant that we can calculate with the velocity triangle at the mean
 \begin{equation}
 K = c_{2 \theta,m} R_m
 \end{equation}
-It's important to notice that with this choice of vortex distribution, we will obtain a twisted blade as the velocity triangles will be different at each radius. Knowing $c_{2 \theta}(r)$ allows us to calculate the velocity triangles at each radius, and therefore the angles of the blade at each radius by the same methodology as before.\\
+It's important to notice that with this choice of vortex distribution, we will obtain a twisted blade as the velocity triangles will be different at each radius. However, it will allow us to obtain a constant work along the blade as we can see on the following equation considering the Euler formula with $c_{3 \theta} = 0$:
+\begin{equation}
+W(R) = U(R) c_{2 \theta,m}(R) = \omega R \times \frac{K}{R} = \omega K
+\end{equation}
+Knowing $c_{2 \theta}(r)$ allows us to calculate the velocity triangle at each radius, and therefore the angles of the blade at each radius by using the same methodology than before.\\
 For each radius $r_i$, the blade speed can be calculated as:
 \begin{equation}
 U_i = 2 \pi r_i \frac{N}{60}
 \end{equation}
 The velocity triangle is then calculated as:
 \begin{equation}
-\left\{
-\begin{aligned}
-c_{3x,i} &= c_{2x,i} = c_{x} = 2 \, \mathrm{m/s} \\
-c_{2\theta, i} &= c_{2\theta}(r_i) = \frac{K}{r_i} \\
-c_{3,i} &= \sqrt{c_{x}^2 + c_{3\theta,i}^2} = c_x \\
-c_{2,i} &= \sqrt{c_{x}^2 + c_{2\theta,i}^2} \\
-w_{3,i} &= \sqrt{c_{x}^2 + U_i^2} \\
-w_{2,i} &= \sqrt{c_{x}^2 + \left(U_i - c_{2\theta, i}\right)^2}\\
-w_{\inf , i} &= (w_{2,i} + w_{3,i})/2
-\end{aligned}
-\right.
+\begin{cases}
+c_{3x,i} = c_{2x,i} = c_{x} = 2 \, \mathrm{m/s} \\
+c_{2\theta, i} = c_{2\theta}(r_i) = \frac{K}{r_i} \\
+c_{3,i} = \sqrt{c_{x}^2 + c_{3\theta,i}^2} = c_x \\
+c_{2,i} = \sqrt{c_{x}^2 + c_{2\theta,i}^2} \\
+w_{3,i} = \sqrt{c_{x}^2 + U_i^2} \\
+w_{2,i} = \sqrt{c_{x}^2 + \left(U_i - c_{2\theta, i}\right)^2} \\
+w_{\inf , i} = \frac{w_{2,i} + w_{3,i}}{2}
+\end{cases}
 \end{equation}
+As we can see on figure~\ref{fig:theorical_velocity_triangles_2}, we can easily find the velocity triangle of state 1, as it should be the same than the velocity triangle of state 3 with a purely axial flow.
 We can also calculate the angles of the blade at each radius using basic trigonometry. We end up with the following final values:\\
-To insert : table of angles, velocities, etc... at each radius
+\textcolor{red}{To insert : table of angles, velocities, etc... at each radius}
 
 Then, we will need to define the chord to pitch ratio for each radius, which will allow us to calculate the chord length at each radius. We will use the values from (Abeykoon) for a fast runner, therefore we have $\frac{s^{\prime \prime}}{t^{\prime \prime}}$ varying between $0.75 -1.3$ depending on the radius. \\
 Since we have 4 blades, we can finally calculate the pitch as:
@@ -161,20 +172,20 @@ The chord is then simply calculated as:
     s_i^{\prime \prime} = t_i^{\prime \prime} \times \left[ {\frac{s^{\prime \prime}}{t^{\prime \prime}}}\right]_i
 \end{equation}
 
-To insert : table of chord and pitch at each radius
+\textcolor{red}{To insert : table of chord and pitch at each radius}
 
 \subsection{Blade Geometry}
 
-With all the values calculated in the previous sections, we can now start defining the geometry of the blade. We will use a methodology based on Janjua et al. (2013). We can first define the different convention for the different angles and coordinates of the blade, as shown in the following figure:
-To insert : blade geometry convention
+With all the values calculated in the previous sections, we can now start defining the geometry of the blade. We will use a methodology based on Janjua et al. (2013) \cite{janjua2013}. We can first define the different convention for the different angles and coordinates of the blade, as shown in the figure~\ref{fig:dot_conventions}. We can then calculate the coordinates of the different points of the blade at each radius. We will first do it for the rotor, and then we will use the same methodology for the stator.
 
+\textbf{Rotor} \\
 Knowing that for each radius $D_i = 2 r_i$, we can calculate the following quantities:
 \begin{equation}
 \left\{
 \begin{aligned}
-y_{2,i} &= \sin(\beta_{2,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{\infty ,i} - \beta_{2,i})}\\
-z_{2,i} &= \frac{y_{2,i}}{\tan(\beta_{2,i} - 90°)}\\
-x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\right)}{2}\right)
+y_{1,i} &= \sin(\beta_{2,i} - 90^\circ) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180^\circ}{\pi}\right)}{2 \cos(\beta_{\infty ,i} - \beta_{2,i})}\\
+z_{1,i} &= \frac{y_{1,i}}{\tan(\beta_{2,i} - 90^\circ)}\\
+x_{1,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{1,i}}{D}\right)}{2}\right)
 \end{aligned}
 \right.
 \end{equation}
@@ -182,9 +193,9 @@ x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\
 \begin{equation}
 \left\{
 \begin{aligned}
-y_{3,i} &= -\sin(\beta_{3,i} - 90°) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180°}{\pi}\right)}{2 \cos(\beta_{3,i} - \beta_{\inf,i})}\\
-z_{3,i} &= \frac{y_{3,i}}{\tan(\beta_{3,i} - 90°)}\\
-x_{3,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{3,i}}{D}\right)}{2}\right)
+y_{2,i} &= -\sin(\beta_{3,i} - 90^\circ) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180^\circ}{\pi}\right)}{2 \cos(\beta_{3,i} - \beta_{\infty,i})}\\
+z_{2,i} &= \frac{y_{2,i}}{\tan(\beta_{3,i} - 90^\circ)}\\
+x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\right)}{2}\right)
 \end{aligned}
 \right.
 \end{equation}
@@ -199,11 +210,37 @@ x_{\inf,i} &= \frac{D_i}{2}
 \right.
 \end{equation}
 
-to do list:
-\begin{itemize}
-    \item change velocity triangle graphes
-    \item add the angles conventions
-    \item add the figure for the blade geometry convention
-    \item add the table for the angles, velocities, chord and pitch at each radius
-    \item change th eequations for the rpm calculation
-\end{itemize}
+\textbf{Stator} \\
+For the stator, we will use the same equations but this time using the angles $\alpha$ instead of the angles $\beta$ and the velocity triangles at the inlet of the turbine instead of the velocity triangles at the outlet of the turbine. We can therefore write:
+
+
+\begin{equation}
+\left\{
+\begin{aligned}
+y_{1,i} &= \sin(\alpha_{1,i} - 90^\circ) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180^\circ}{\pi}\right)}{2 \cos(\alpha_{\infty ,i} - \alpha_{1,i})}\\
+z_{1,i} &= \frac{y_{1,i}}{\tan(\alpha_{1,i} - 90^\circ)}\\
+x_{1,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{1,i}}{D}\right)}{2}\right)
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\left\{
+\begin{aligned}
+y_{2,i} &= -\sin(\alpha_{2,i} - 90^\circ) \times \frac{D_i \sin\left(\frac{s_i''}{D} \times \frac{180^\circ}{\pi}\right)}{2 \cos(\alpha_{2,i} - \alpha_{\infty,i})}\\
+z_{2,i} &= \frac{y_{2,i}}{\tan(\alpha_{2,i} - 90^\circ)}\\
+x_{2,i} &= \frac{D_i}{2} - D_i\sin^2\left(\frac{\arcsin\left(\frac{2y_{2,i}}{D}\right)}{2}\right)
+\end{aligned}
+\right.
+\end{equation}
+
+\begin{equation}
+\left\{
+\begin{aligned}
+y_{\inf,i} &= 0\\
+z_{\inf,i} &= 0\\
+x_{\inf,i} &= \frac{D_i}{2}
+\end{aligned}
+\right.
+\end{equation}
+
