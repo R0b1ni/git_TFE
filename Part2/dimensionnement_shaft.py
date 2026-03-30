@@ -4,6 +4,8 @@ MÉMOIRE: DIMENSIONNEMENT SHAFT
 Created on Mon Feb  9 17:08:39 2026
 
 @author: H. Nishio et R. Thonon
+
+(IA utilisée pour la génération des plots)
 """
 
 import numpy as np
@@ -76,7 +78,7 @@ ax.set_yticks([F2, 0, F3, F1])
 #ax.set_yticklabels(['F2', '0', 'F3', 'F1'], fontsize=12, fontweight='bold')
 ax.invert_yaxis()
 
-ax.set_title("Shearing diagram", pad=15, fontsize=14)
+ax.set_title("Shearing diagram", pad=15, fontsize=14) 
 ax.set_ylabel("Shearing [N]")
 ax.set_xlabel("Position along the runner-driven shaft")
 
